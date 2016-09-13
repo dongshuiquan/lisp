@@ -135,3 +135,22 @@
          (cons (car set1)
                (intersection-set (cdr set1) set2)))
         (else (intersection-set (cdr set1) set2))))
+
+(define (entry tree) (car tree))
+
+(define (left-branch tree ) (cadr tree))
+
+(define (right-branch tree) (caddr tree))
+
+(define (make-tree entry left right)
+  (list entry left right))
+
+(define (element-of-set2? x set)
+  (cond ((null? set) false)
+        ((= x (entry set)) true)
+        ((< x (entry set))
+         (element-of-set? x (left-branch set)))
+        ((> x (entry set))
+         (element-of-set2? x (right-branch set)))))
+
+;啃这书好难
